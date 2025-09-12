@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--sdf version='1.4'>
+  <model name="a_robot">
+  </model>
+</sdf-->
+<robot name="ClubBotII">
+
+  <material name="acrylic">
+    <color rgba="0.145 0.412 0.718 1"/>
+  </material>
+
+  <material name="silver">
+    <color rgba="0.75 0.75 0.75 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+    <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://clubbot_description/meshes/Base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 3.1415" xyz="0.1715 0.336 -0.0185"/>
+      <material name="acrylic"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.043" radius="0.1215"/>
+      </geometry>
+      <!--The following line lifts the robot to place the wheels on the ground-->
+      <!--origin rpy="0 0 0" xyz="0 0 0.095"/-->
+    </collision>
+    <inertial>
+      <mass value="1.71"/>
+      <inertia ixx="0.007" ixy="0.0" ixz="0.0" iyy="0.007" iyz="0.0" izz="0.013"/>
+    </inertial>
+  </link>
+
+    <link name="motor_bracket">
+    <visual>
+      <geometry>
+        <box size="0.037 0.155 0.0185"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
