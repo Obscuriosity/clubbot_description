@@ -5,36 +5,38 @@
 </sdf-->
 <robot name="ClubBotII">
 
-  <material name="acrylic">
-    <color rgba="0.145 0.412 0.718 1"/>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
   </material>
 
-  <material name="silver">
-    <color rgba="0.75 0.75 0.75 1"/>
+  <material name="green">
+    <color rgba="0 1 0 1"/>
   </material>
 
-  <material name="black">
-    <color rgba="0 0 0 1"/>
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
   </material>
 
   <material name="white">
     <color rgba="1 1 1 1"/>
   </material>
 
-    <link name="base_link">
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <link name="base_link">
     <visual>
       <geometry>
         <mesh filename="package://clubbot_description/meshes/Base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 3.1415" xyz="0.1715 0.336 -0.0185"/>
-      <material name="acrylic"/>
+      <origin rpy="0 0 3.1415" xyz="0.0 0.0 0.0"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
-        <cylinder length="0.043" radius="0.1215"/>
+        <box size="0.23 0.24 0.12"/>
       </geometry>
-      <!--The following line lifts the robot to place the wheels on the ground-->
-      <!--origin rpy="0 0 0" xyz="0 0 0.095"/-->
     </collision>
     <inertial>
       <mass value="1.71"/>
@@ -42,11 +44,31 @@
     </inertial>
   </link>
 
-    <link name="motor_bracket">
+  <link name="left_wheel">
     <visual>
       <geometry>
-        <box size="0.037 0.155 0.0185"/>
+        <mesh filename="package://clubbot_description/meshes/SpikeyWheel.stl" scale="0.001 0.001 0.001"/>
+        <!--cylinder length="0.04" radius="0.04"/-->
       </geometry>
-      <material name="silver"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <material name="black"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.00003" ixy="0.0" ixz="0.0" iyy="0.00003" iyz="0.0" izz="0.0004"/>
+    </inertial>
   </link>
+
+  <joint name="left_wheel_to_base_link" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="0 0.0 0.0"/>
+  </joint>
+
+</robot>
