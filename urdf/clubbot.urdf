@@ -30,8 +30,8 @@
       <geometry>
         <mesh filename="package://clubbot_description/meshes/Base_link.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <origin rpy="0 0 3.1415" xyz="0.0 0.0 0.0"/>
-      <material name="blue"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <material name="white"/>
     </visual>
     <collision>
       <geometry>
@@ -68,7 +68,34 @@
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="left_wheel"/>
-    <origin xyz="0 0.0 0.0"/>
+    <origin rpy="0 1.5708 0" xyz="0.09 0.01 -0.05"/>
+  </joint>
+
+    <link name="right_wheel">
+    <visual>
+      <geometry>
+        <mesh filename="package://clubbot_description/meshes/SpikeyWheel.stl" scale="0.001 0.001 0.001"/>
+        <!--cylinder length="0.04" radius="0.04"/-->
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.04" radius="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.055"/>
+      <inertia ixx="0.00003" ixy="0.0" ixz="0.0" iyy="0.00003" iyz="0.0" izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <joint name="right_wheel_to_base_link" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin rpy="0 -1.5708 0" xyz="-0.09 0.01 -0.05"/>
   </joint>
 
 </robot>
