@@ -38,6 +38,7 @@
         <box size="0.23 0.24 0.12"/>
       </geometry>
     </collision>
+    <!--inertia still pertains to terence = cylinder-->
     <inertial>
       <mass value="1.71"/>
       <inertia ixx="0.007" ixy="0.0" ixz="0.0" iyy="0.007" iyz="0.0" izz="0.013"/>
@@ -97,5 +98,23 @@
     <child link="right_wheel"/>
     <origin rpy="0 -1.5708 0" xyz="-0.09 0.01 -0.05"/>
   </joint>
+
+  <link name="top_usb_cam">
+    <visual>
+      <material name="green"/>
+      <geometry>
+        <mesh filename="package://clubbot_description/meshes/camera_top.stl" scale="0.001 0.001 0.001"/>"
+      </geometry>
+    </visual>
+    <!-- Need to add collision and inertia for top-->
+  </link>
+
+  <joint name="top_to_base" type="fixed">
+    <parent link="base_link"/>
+    <child link="top_usb_cam"/>
+    <origin rpy="0 0 0" xyz="-0.00 0.00 0.05"/>
+  </joint>
+
+
 
 </robot>
